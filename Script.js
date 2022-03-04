@@ -1,147 +1,115 @@
-//This variable will assign a random number from 1 to 9
-let randomNumber = Math.floor(Math.random()*9)+1;
+// Create a Random Number
+//let randomNumber = Math.floor((Math.random()*9)+1);
 
-// This function will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’ based on the above random number
-function computerPlay(randomNumber) { //nao precisa randomNUmber
-    //let result;
+// Use the random Number to assign it to either rock, paper or scissors
+function computerPlay(randomNumber) { //nao precisa randomNumber
     if (randomNumber <= 3) {
-        result = 'Rock';
-    } else if(randomNumber <= 6) {
-        result = 'Paper';
-    } else {
-        result = 'Scissors';
+        return 'Rock';
     }
-    return result;
+    else if (randomNumber <= 6 ) { 
+        return 'Paper';
+    }
+    else {
+        return 'Scissors';
+    }
 }
 
-//Assigning variables for a single round of Rock Paper Scissors
-/*let computerSelection = computerPlay(randomNumber);
-let playerSelection2 = prompt('Rock, Paper or Scissors?', '');
-let playerSelection = playerSelection2.toUpperCase();*/
+// Assign variable to function 
+// let computerSelection = computerPlay();
+
+// Create input of player
+// let personPlayRaw = prompt ('Rock, Paper or Scissors?', '');
+// let personPlay = personPlayRaw.toUpperCase();
 
 
-//This function plays a single round of Rock Paper Scissors
-function play(playerSelection, computerSelection) {
-    if ((playerSelection == 'ROCK') && (computerSelection == 'Paper')) {
-        return "You Lose! Paper beats Rock";
-       }else if((playerSelection == 'ROCK') && (computerSelection == 'Scissors')) {
-            return "You Win! Rock beats Scissors";
-        }else if((playerSelection == 'ROCK') && (computerSelection == 'Rock')) {
-            return "Rock against Rock! Draw!";
-        }else if((playerSelection == 'SCISSORS') && (computerSelection == 'Paper')) {
-            return "You Win! Scissors beats Paper";
-        }else if((playerSelection == 'SCISSORS') && (computerSelection == 'Scissors')) {
-            return "Scissors against Scissors! Draw!";
-        }else if((playerSelection == 'SCISSORS') && (computerSelection == 'Rock')) {
-            return "You Lose! Rock beats Scissors";
-        }else if((playerSelection == 'PAPER') && (computerSelection == 'Paper')) {
-            return "Paper against Paper! Draw!";
-        }else if((playerSelection == 'PAPER') && (computerSelection == 'Scissors')) {
-            return "You Lose! Scissors beats Paper";
-        }else if((playerSelection == 'PAPER') && (computerSelection == 'Rock')) {
-            return "You Win! Paper beats Rock";
-        }else {
-         return 'You have to insert either Rock, Paper or Scissors to play the game' ;   
-       }
+function comparative(personPlay, computerSelection){
+    if ((personPlay == 'ROCK') && (computerSelection == 'Rock')) {  
+        return 'Draw!';
+    }
+    else if ((personPlay == 'ROCK') && (computerSelection == 'Paper')) {  
+        return 'You lost the round!';
+    }
+    else if ((personPlay == 'ROCK') && (computerSelection == 'Scissors')) {  
+        return 'You won the round!';
+    }
+    else if ((personPlay == 'PAPER') && (computerSelection == 'Rock')) {  
+        return 'You won the round!';
+    }
+    else if ((personPlay == 'PAPER') && (computerSelection == 'Paper')) {  
+        return 'Draw!';
+    }
+    else if ((personPlay == 'PAPER') && (computerSelection == 'Scissors')) {  
+        return 'You lost the round!';
+    }
+    else if ((personPlay == 'SCISSORS') && (computerSelection == 'Rock')) {  
+        return 'You lost the round!';
+    }
+    else if ((personPlay =='SCISSORS') && (computerSelection == 'Paper')) {  
+        return 'You won the round!';
+    }
+    else if ((personPlay == 'SCISSORS') && (computerSelection == 'Scissors')) {  
+        return 'Draw!';
+    }
+    else {
+        return 'You have to insert either Rock, Paper or Scissors.'
+    }
 }
 
-//This function is equivalent a one round of the game. Terms were done before the creation of playRound.
-function playRound(){
-        randomNumber = Math.floor(Math.random()*9)+1;
-        let computerSelection = computerPlay(randomNumber); //nao precisa randomNumber
-        let playerSelection2 = prompt('Rock, Paper or Scissors?', '');
-        let playerSelection = playerSelection2.toUpperCase();
-        a = play(playerSelection, computerSelection);
-        alert(a);
-        b = score(); 
-
+// This function is equivalent a one round of the game
+function oneRound(){
+    let randomNumber = Math.floor((Math.random()*9)+1);
+    let computerSelection = computerPlay(randomNumber); //nao precisa randomNumber
+    let personPlayRaw = prompt ('Rock, Paper or Scissors?', '');
+    let personPlay = personPlayRaw.toUpperCase();
+    a = comparative(personPlay, computerSelection); // Call function and assign it to a variable
+    alert(a); // 
+    b = eachScore(); // Call function and assign it to a variable
 }
 
-// This function play 5 rounds of the game. 
-function game() {
+// This function will run oneRound() 5 times
+
+function fiveRounds() {
     for (let i = 0; i < 5; i++) {
-        playRound();
-        scoreBoard(b);
+        oneRound();
     }
-};
-
-// Keeping a score and reporting a winner or loser at the end.
-
-playerScore = 0;
-computerScore = 0;
-tie = 0;
-mistake = 0;
-
-function score() {
-
-    if (a == "You Win! Rock beats Scissors") {
-        return 'playerScore';}
-    else if (a == "You Win! Scissors beats Paper") {
-        return 'playerScore'}
-    else if (a == "You Win! Paper beats Rock") {
-        return 'playerScore';}
-    else if (a == "You Lose! Paper beats Rock") {
-        return 'computerScore';}
-    else if (a == "You Lose! Rock beats Scissors") {
-        return 'computerScore';}
-    else if (a == "You Lose! Scissors beats Paper") {
-        return 'computerScore';}
-    else if (a == "Rock against Rock! Draw!") {
-        return 'tie';}
-    else if (a == "Scissors against Scissors! Draw!") {
-        return 'tie'}
-    else if (a == "Paper against Paper! Draw!") {
-        return 'tie';}
-    else if (a == "You have to insert either Rock, Paper or Scissors to play the game") {
-        return 'mistake';}
 }
 
+//this function will score points of each round 
 
+win = 0;
+lose = 0;
+tie = 0;
+nonsense = 0;
 
-function scoreBoard() {
-    if(b == 'playerScore') {
-        return playerScore = ++playerScore;
+function eachScore() {
+    if (a == 'You won the round!') {  
+        return win = ++win;
     }
-    if(b == 'computerScore') {
-        return computerScore = ++computerScore;
+    else if (a == 'You lost the round!') {  
+        return lose = ++lose;
     }
-    if(b == 'tie') {
+    else if (a == 'Draw!') {  
         return tie = ++tie;
     }
-    if(b == 'mistake') {
-        return mistake = ++mistake;
+    else if (a == 'You have to insert either Rock, Paper or Scissors.') {  
+        return nonsense = ++nonsense;
     }
 }
 
-// call function game
-game();
-
-// Call overall winner
-function whoIsTheWinner() {
-    if (playerScore > (computerScore && tie && mistake)) {
-        return 'Congratulations! You Won the game.'
+function finalScore (){
+    if (win > lose) { 
+    return 'Congratulations! You Won the game.'
     }
-    else if ((tie && playerScore && mistake) < computerScore) {
+    if (lose > win) { 
         return 'Too bad! You lost.'
     }
-    else if ((playerScore && computerScore && mistake) < tie) {
-        return 'Draw! Maybe you should try again.'
-    }
-    else if (mistake = 5) {
+    if (nonsense == 5){  
         return 'Do you even know how to play Rock Paper Scissors?'
+    }
+    if ((lose == win) || (tie = 5)){ 
+        return 'Draw! Better luck next time.'
     }
 }
 
-// Call overall winner
-alert(whoIsTheWinner());
-
-
-// First attempt of 'for'
-/* for (let i = 1; i < 5; i++) {
-    randomNumber = Math.floor(Math.random()*10);
-    computerSelection = computerPlay(randomNumber);
-    playerSelection2 = prompt('Rock, Paper or Scissors?', '');
-    playerSelection = playerSelection2.toUpperCase();
-    play(playerSelection, computerSelection);
-    alert(play(playerSelection, computerSelection))
-    } */
+fiveRounds();
+alert(finalScore(win, lose, tie, nonsense));
