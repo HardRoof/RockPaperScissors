@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissor</title>
-    <!--- <link rel="stylesheet" href="style.css"> --->
-</head>
-<body>
-
-    <script src="script.js"></script>
-    
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Rock, Paper, Scissor</title>
+		<script src="script.js" defer></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<h1> Rock, Paper, or Scissors </h1>
+		<p> You against the computer. First to score 5 points wins the game. </p>
+		<div id="options">
+			<button class="rock"> <img class="rock" src="img/rock.png" alt="Rock" height="100px" width="140px"> </button>
+			<button class="paper"> <img class="paper" src="img/paper.png" alt="Paper" height="100px" width="140px"> </button>
+			<button class="scissors"> <img class="scissors" src="img/scissors.png" alt="Scissors" height="100px" width="140px"> </button>
+		</div>
+		<div id="container">
+			<div id="textScore"></div>
+			<div id="playerScore"></div>
+			<div id="computerScore"></div>
+		</div>
+	</body>
 </html>
 
